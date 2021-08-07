@@ -7,13 +7,14 @@ import { map } from 'rxjs/operators';
 import { comments } from './comments';
 import { articleDetail } from './mock-article-detail';
 import { environment } from 'src/environments/environment';
+import { Article } from 'angular-news-api';
 @Component({
     selector: 'app-news-detail',
     templateUrl: './news-detail.component.html',
     styleUrls: ['./news-detail.component.scss'],
 })
 export class NewsDetailComponent implements OnInit {
-    public article$: Observable<object>;
+    public article$: Observable<Article>;
     public comments: any[] = comments;
     commentsPluralMapping = {
         '=0': '0 Comments',
@@ -38,7 +39,6 @@ export class NewsDetailComponent implements OnInit {
                     if (!window.history.state.title) {
                         this.router.navigate(['news']);
                     }
-
                     return window.history.state;
                 }
             })

@@ -5,7 +5,7 @@
 export const environment = {
     production: false,
     newsAPIKey: '081663c9e7db42c180219dcb3f23fbc3',
-    mock: false,
+    mock: true,
 };
 
 /*

@@ -2,7 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Subject, Subscription } from 'rxjs';
 import { debounceTime } from 'rxjs/operators';
-import { NewsService } from '../news.service';
+import { NewsService } from '../../services';
 
 @Component({
     selector: 'app-news',

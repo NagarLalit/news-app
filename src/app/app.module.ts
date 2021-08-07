@@ -18,8 +18,7 @@ import { NewsApiKeyConfig } from 'angular-news-api';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { NewsDetailComponent } from './news-detail/news-detail.component';
-import { NewsComponent } from './news/news.component';
+import { components } from './components/';
 import { environment } from 'src/environments/environment';
 
 const newsApiConfig: NewsApiKeyConfig = {
@@ -27,7 +26,7 @@ const newsApiConfig: NewsApiKeyConfig = {
 };
 
 @NgModule({
-    declarations: [AppComponent, NewsDetailComponent, NewsComponent],
+    declarations: [AppComponent, [...components]],
     imports: [
         BrowserModule,
         BrowserAnimationsModule,
