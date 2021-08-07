@@ -1,0 +1,11 @@
+{
+  "recommendations": [
+    "esbenp.prettier-vscode",
+    "eamodio.gitlens",
+    "editorconfig.editorconfig",
+    "streetsidesoftware.code-spell-checker",
+    "coenraadS.bracket-pair-colorizer-2",
+    "ms-vsliveshare.vsliveshare",
+    "gruntfuggly.todo-tree"
+  ]
+}

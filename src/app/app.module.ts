@@ -1,9 +1,15 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import {
-    MatToolbarModule, MatIconModule, MatMenuModule,
-    MatButtonModule, MatFormFieldModule, MatInputModule,
-    MatProgressSpinnerModule, MatProgressBarModule
+    MatToolbarModule,
+    MatIconModule,
+    MatMenuModule,
+    MatButtonModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatProgressSpinnerModule,
+    MatProgressBarModule,
+    MatCardModule,
 } from '@angular/material';
 import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -17,15 +23,11 @@ import { NewsComponent } from './news/news.component';
 import { environment } from 'src/environments/environment';
 
 const newsApiConfig: NewsApiKeyConfig = {
-    key: environment.newsAPIKey
-  };
+    key: environment.newsAPIKey,
+};
 
 @NgModule({
-    declarations: [
-        AppComponent,
-        NewsDetailComponent,
-        NewsComponent
-    ],
+    declarations: [AppComponent, NewsDetailComponent, NewsComponent],
     imports: [
         BrowserModule,
         BrowserAnimationsModule,
@@ -39,9 +41,10 @@ const newsApiConfig: NewsApiKeyConfig = {
         FormsModule,
         MatProgressSpinnerModule,
         MatProgressBarModule,
-        NgnewsModule.forRoot(newsApiConfig)
+        MatCardModule,
+        NgnewsModule.forRoot(newsApiConfig),
     ],
     providers: [],
-    bootstrap: [AppComponent]
+    bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

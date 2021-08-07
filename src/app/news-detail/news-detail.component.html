@@ -1,9 +1,91 @@
-<div class="content">
-    <div *ngIf="(article$ | async) as article">
-        {{ article.title }} details
-        <!-- Artile man image -->
-        <!-- Artile title, description, metadata -->
-        <!-- Read more button -->
-        <!-- Comments section -->
+<div class="container">
+    <div class="row">
+        <div *ngIf="article$ | async as article">
+            <div class="detail-container">
+                <div class="news-info">
+                    <!-- Article main image -->
+                    <div class="news-image">
+                        <img
+                            class="card-img-top"
+                            src="{{
+                                article.urlToImage
+                                    ? article.urlToImage
+                                    : '/assets/images/placeholder.jpg'
+                            }}"
+                            alt="{{ article.title }}"
+                        />
+                    </div>
+                    <!-- Article title, description, metadata -->
+                    <div class="news-body">
+                        <div class="publish-info">
+                            <p class="source-info">{{ article.source.name }}</p>
+                            <p class="author">{{ article.author }}</p>
+                            <p class="published-date">
+                                {{ article.publishedAt | date }}
+                            </p>
+                            <p class="comments-count">
+                                {{
+                                    comments.length
+                                        | i18nPlural: commentsPluralMapping
+                                }}
+                            </p>
+                        </div>
+                        <div class="description">
+                            <h5 class="card-title">{{ article.title }}</h5>
+                            <!-- Read more button -->
+                            {{ article.description }}
+                            {{ article.content ? article.content : '' }}
+                            <button
+                                (click)="goToArticle(article.url)"
+                                mat-raised-button
+                                class="read-more-btn"
+                                color="accent"
+                            >
+                                Read More
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <!-- Comments section -->
+                <div class="comments-section">
+                    <div class="title">
+                        <h5>
+                            {{
+                                comments.length
+                                    | i18nPlural: commentsPluralMapping
+                            }}
+                        </h5>
+                    </div>
+                    <div
+                        class="comments border-bottom"
+                        *ngFor="let commentInfo of comments"
+                    >
+                        <div class="row">
+                            <div class="col-1">
+                                <div class="avatar-container">
+                                    <img
+                                        class="rounded-circle"
+                                        [src]="commentInfo.avatar"
+                                    />
+                                </div>
+                            </div>
+                            <div class="col-11">
+                                <div class="user-info">
+                                    <div class="name">
+                                        {{ commentInfo.name }}
+                                    </div>
+                                    <div class="date">
+                                        {{ commentInfo.date | date }}
+                                    </div>
+                                </div>
+                                <div class="comment">
+                                    {{ commentInfo.comment }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
