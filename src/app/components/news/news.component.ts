@@ -42,6 +42,7 @@ export class NewsComponent implements OnInit, OnDestroy {
                     this.showLoader = false;
                 },
                 (error) => {
+                    this.articles = [];
                     this.showLoader = false;
                 }
             )

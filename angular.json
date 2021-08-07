@@ -80,7 +80,8 @@
                         "karmaConfig": "src/karma.conf.js",
                         "styles": ["src/styles.scss"],
                         "scripts": [],
-                        "assets": ["src/favicon.ico", "src/assets"]
+                        "assets": ["src/favicon.ico", "src/assets"],
+                        "codeCoverage": true
                     }
                 },
                 "lint": {
@@ -92,8 +93,8 @@
                         ],
                         "exclude": [
                             "**/node_modules/**",
-                            "mock-article-detail.ts",
-                            "mock-response.ts"
+                            "**/mock-article-detail.ts",
+                            "**/mock-response.ts"
                         ]
                     }
                 }

@@ -1,35 +1,58 @@
 import { TestBed, async } from '@angular/core/testing';
+import {
+    MatIconModule,
+    MatMenuModule,
+    MatToolbarModule,
+} from '@angular/material';
+import { NavigationEnd, Router, RouterEvent } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
+import { BehaviorSubject } from 'rxjs';
 import { AppComponent } from './app.component';
 
 describe('AppComponent', () => {
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      imports: [
-        RouterTestingModule
-      ],
-      declarations: [
-        AppComponent
-      ],
-    }).compileComponents();
-  }));
+    let fixture;
+    let component: AppComponent;
+    let router: Router;
+    const routerEvent$ = new BehaviorSubject<RouterEvent>(null);
 
-  it('should create the app', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.debugElement.componentInstance;
-    expect(app).toBeTruthy();
-  });
+    beforeEach(async(() => {
+        TestBed.configureTestingModule({
+            imports: [
+                RouterTestingModule,
+                MatMenuModule,
+                MatIconModule,
+                MatToolbarModule,
+            ],
+            declarations: [AppComponent],
+        }).compileComponents();
+        fixture = TestBed.createComponent(AppComponent);
+        router = TestBed.get(Router);
+        (router as any).events = routerEvent$.asObservable();
 
-  it(`should have as title 'news-app'`, () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.debugElement.componentInstance;
-    expect(app.title).toEqual('news-app');
-  });
+        component = fixture.componentInstance;
+    }));
 
-  it('should render title in a h1 tag', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    fixture.detectChanges();
-    const compiled = fixture.debugElement.nativeElement;
-    expect(compiled.querySelector('h1').textContent).toContain('Welcome to news-app!');
-  });
+    it('should create the app', () => {
+        const app = fixture.debugElement.componentInstance;
+        expect(app).toBeTruthy();
+    });
+
+    it('should display back button if article is false', () => {
+        fixture.article = true;
+        fixture.detectChanges();
+        const compiled = fixture.debugElement.nativeElement;
+        expect(compiled.querySelector('.back-button')).toBeDefined();
+    });
+
+    xit('should set the article to false', () => {
+        const navigateSpy = spyOn(router, 'navigate');
+        routerEvent$.next(new NavigationEnd(200, '/article', ''));
+        expect(navigateSpy).toHaveBeenCalled();
+    });
+
+    it('should call window history back method', () => {
+        const historyBackMock = spyOn(window.history, 'back');
+        component.goBack();
+        expect(historyBackMock).toHaveBeenCalled();
+    });
 });

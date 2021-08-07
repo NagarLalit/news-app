@@ -8,6 +8,7 @@ import { comments } from './comments';
 import { articleDetail } from './mock-article-detail';
 import { environment } from 'src/environments/environment';
 import { Article } from 'angular-news-api';
+
 @Component({
     selector: 'app-news-detail',
     templateUrl: './news-detail.component.html',

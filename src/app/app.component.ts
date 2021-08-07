@@ -8,11 +8,10 @@ import { slideInAnimation } from './animations';
     templateUrl: './app.component.html',
     styleUrls: ['./app.component.scss'],
     animations: [
-      // slideInAnimation
-    ]
+        // slideInAnimation
+    ],
 })
 export class AppComponent {
-    public title = 'News';
     public article = false;
 
     constructor(router: Router) {
@@ -26,7 +25,11 @@ export class AppComponent {
     }
 
     public prepareRoute(outlet: RouterOutlet): any {
-        return outlet && outlet.activatedRouteData && outlet.activatedRouteData.animation;
+        return (
+            outlet &&
+            outlet.activatedRouteData &&
+            outlet.activatedRouteData.animation
+        );
     }
 
     public goBack(): void {
